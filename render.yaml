@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: emotion-detection-app
+    env: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    envVars:
+      - key: PORT
+        value: 10000
