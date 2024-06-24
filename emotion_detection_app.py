@@ -34,20 +34,20 @@ if uploaded_photo:
     img_array = np.array(image)
 
     # Analyze the image using DeepFace
-    result = DeepFace.analyze(img_array, actions=['age', 'gender', 'race', 'emotion'], 
+    result = DeepFace.analyze(img_array, actions=['emotion'], 
                               enforce_detection=False)
 
     # Extract the predicted age
-    age = result[0]['age']
-    col2.write(f"Predicted Age: {age}")
+    #age = result[0]['age']
+    #col2.write(f"Predicted Age: {age}")
 
     # Extract the dominant gender
-    dominant_gender = result[0]['dominant_gender']
-    col2.write(f"Dominant Gender: {dominant_gender}")
+    #dominant_gender = result[0]['dominant_gender']
+    #col2.write(f"Dominant Gender: {dominant_gender}")
 
     # Extract the dominant race
-    dominant_race = result[0]['dominant_race']
-    col2.write(f"Dominant Race: {dominant_race}")
+    #dominant_race = result[0]['dominant_race']
+    #col2.write(f"Dominant Race: {dominant_race}")
 
     # Extract the dominant emotion
     dominant_emotion = result[0]['dominant_emotion']
