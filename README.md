@@ -9,7 +9,9 @@ The application is deployed and accessible via Railway: [Face Emotion Detection 
 
 ## Screenshots
 
-![Screenshot](https://github.com/oozdal/Face-Emotion-Detection/assets/34719109/72f761ea-9cf5-468a-abff-466c122f2af4)
+![Screenshot 2024-07-01 at 4 48 19 PM](https://github.com/oozdal/Face-Emotion-Detection/assets/34719109/cf629d76-c2c6-41df-b047-069a9bcebf82)
+
+<img width="1427" alt="Screenshot 2024-07-01 at 4 50 02 PM" src="https://github.com/oozdal/Face-Emotion-Detection/assets/34719109/3ea5491a-e6e1-4204-9a13-06be12afde1a">
 
 ## Features
 
