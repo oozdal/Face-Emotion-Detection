@@ -2,7 +2,7 @@ import numpy as np
 import streamlit as st
 from deepface import DeepFace
 from PIL import Image
-
+from emotion import plot_emotion_probabilities
 
 # Initialize the global variable
 uploaded_photo = None
@@ -37,19 +37,13 @@ if uploaded_photo:
     result = DeepFace.analyze(img_array, actions=['emotion'], 
                               enforce_detection=False)
 
-    # Extract the predicted age
-    #age = result[0]['age']
-    #col2.write(f"Predicted Age: {age}")
-
-    # Extract the dominant gender
-    #dominant_gender = result[0]['dominant_gender']
-    #col2.write(f"Dominant Gender: {dominant_gender}")
-
-    # Extract the dominant race
-    #dominant_race = result[0]['dominant_race']
-    #col2.write(f"Dominant Race: {dominant_race}")
-
     # Extract the dominant emotion
     dominant_emotion = result[0]['dominant_emotion']
     col2.write(f"Dominant Emotion: {dominant_emotion}")
 
+    # Extract emotion probabilities
+    emotion_probs = result[0]['emotion']
+ 
+    # Plot the probabilities
+    chart = plot_emotion_probabilities(emotion_probs)
+    col2.altair_chart(chart, use_container_width=True)
