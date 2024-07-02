@@ -55,6 +55,15 @@ Allow the application to access your camera, then either take a picture or uploa
 **3. View Results:**
 Wait for the model to process the image and display the predicted emotion.
 
+**4. Feedback:**
+After the predictions are shown, a feedback section will also appear as shown below. We value your input. Please share your experience with us!
+
+![Screenshot 2024-07-01 at 10 54 43 PM](https://github.com/oozdal/Face-Emotion-Detection/assets/34719109/8771d43d-6927-44bc-90a3-8aefe0d3cc7c)
+
+![Screenshot 2024-07-01 at 10 56 14 PM](https://github.com/oozdal/Face-Emotion-Detection/assets/34719109/2c459e5f-2213-4df3-aa51-7a38005799f0)
+
+![Screenshot 2024-07-01 at 10 56 28 PM](https://github.com/oozdal/Face-Emotion-Detection/assets/34719109/bc7bb23f-0383-40ee-8933-a72682332aa3)
+
 ## Development
 
 If you want to develop this application further, follow these steps:
