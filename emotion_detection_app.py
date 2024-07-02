@@ -3,6 +3,8 @@ import streamlit as st
 from deepface import DeepFace
 from PIL import Image
 from emotion import plot_emotion_probabilities
+from streamlit_feedback import streamlit_feedback
+
 
 # Initialize the global variable
 uploaded_photo = None
@@ -47,3 +49,17 @@ if uploaded_photo:
     # Plot the probabilities
     chart = plot_emotion_probabilities(emotion_probs)
     col2.altair_chart(chart, use_container_width=True)
+
+    # Provide feedback using streamlit_feedback
+    with col2.container(border=True):
+
+        feedback_prompt = "We value your feedback! How was your experience today?"
+        st.write(feedback_prompt)
+
+        feedback = streamlit_feedback(feedback_type="faces",
+                                optional_text_label="[Optional] Please provide an explanation", 
+                                align="flex-start",
+                                key='fb_k')
+    
+        if feedback:
+            st.success("✔️ Thank you for your feedback!")
