@@ -4,6 +4,7 @@ from deepface import DeepFace
 from PIL import Image
 from emotion import plot_emotion_probabilities
 from streamlit_feedback import streamlit_feedback
+from database import save_prediction_to_db  # Import the function from database.py
 
 
 # Initialize the global variable
@@ -50,6 +51,12 @@ if uploaded_photo:
     chart = plot_emotion_probabilities(emotion_probs)
     col2.altair_chart(chart, use_container_width=True)
 
+    try:
+        # Save prediction to the database
+        save_prediction_to_db(dominant_emotion)
+    except:
+        pass
+
     # Provide feedback using streamlit_feedback
     with col2.container(border=True):
 
@@ -63,3 +70,5 @@ if uploaded_photo:
     
         if feedback:
             st.success("✔️ Thank you for your feedback!")
+
+
