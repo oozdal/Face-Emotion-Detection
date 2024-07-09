@@ -10,9 +10,12 @@ from database import save_prediction_to_db  # Import the function from database.
 # Initialize the global variable
 uploaded_photo = None
 
-# Initialize session state for feedback
+# Initialize session state
 if 'feedback_given' not in st.session_state:
     st.session_state['feedback_given'] = False
+if 'prediction_to_db_given' not in st.session_state:
+    st.session_state['prediction_to_db_given'] = False
+
 
 col1, col2 = st.columns([1, 2])
 
@@ -55,11 +58,13 @@ if uploaded_photo:
     chart = plot_emotion_probabilities(emotion_probs)
     col2.altair_chart(chart, use_container_width=True)
 
-    try:
-        # Save prediction to the database
-        save_prediction_to_db(dominant_emotion)
-    except:
-        pass
+    if not st.session_state['prediction_to_db_given']:
+        try:
+            # Save prediction to the database
+            save_prediction_to_db(dominant_emotion)
+            st.session_state['prediction_to_db_given'] = True
+        except:
+            pass
 
     # Provide feedback using streamlit_feedback
     if not st.session_state['feedback_given']:
