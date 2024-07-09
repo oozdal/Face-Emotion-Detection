@@ -10,6 +10,10 @@ from database import save_prediction_to_db  # Import the function from database.
 # Initialize the global variable
 uploaded_photo = None
 
+# Initialize session state for feedback
+if 'feedback_given' not in st.session_state:
+    st.session_state['feedback_given'] = False
+
 col1, col2 = st.columns([1, 2])
 
 col1.markdown(" # Welcome to Face Emotion Detection App!")
@@ -58,17 +62,19 @@ if uploaded_photo:
         pass
 
     # Provide feedback using streamlit_feedback
-    with col2.container(border=True):
+    if not st.session_state['feedback_given']:
+        with col2.container(border=True):
 
-        feedback_prompt = "We value your feedback! How was your experience today?"
-        st.write(feedback_prompt)
+            feedback_prompt = "We value your feedback! How was your experience today?"
+            st.write(feedback_prompt)
 
-        feedback = streamlit_feedback(feedback_type="faces",
-                                optional_text_label="[Optional] Please provide an explanation", 
-                                align="flex-start",
-                                key='fb_k')
-    
-        if feedback:
-            st.success("✔️ Thank you for your feedback!")
+            feedback = streamlit_feedback(feedback_type="faces",
+                                    optional_text_label="[Optional] Please provide an explanation", 
+                                    align="flex-start",
+                                    key='fb_k')
+        
+            if feedback:
+                st.success("✔️ Thank you for your feedback!")
+                st.session_state['feedback_given'] = True
 
 
