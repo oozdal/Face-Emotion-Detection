@@ -11,10 +11,12 @@ from database import save_prediction_to_db  # Import the function from database.
 uploaded_photo = None
 
 # Initialize session state
+if 'uploaded_photo' not in st.session_state:
+    st.session_state['uploaded_photo'] = None
 if 'feedback_given' not in st.session_state:
     st.session_state['feedback_given'] = False
-if 'prediction_to_db_given' not in st.session_state:
-    st.session_state['prediction_to_db_given'] = False
+if 'prediction_to_db' not in st.session_state:
+    st.session_state['prediction_to_db'] = False
 
 
 col1, col2 = st.columns([1, 2])
@@ -34,6 +36,13 @@ elif checkbox_val == "Upload a photo":
     if uploaded_photo:
         col2.image(uploaded_photo)
         col2.success(" Photo uploaded successfully!")
+
+# Check if the photo has been cleared
+if st.session_state['uploaded_photo'] is not None and uploaded_photo is None:
+    st.session_state['prediction_to_db'] = False
+
+# Update session state with the new uploaded photo
+st.session_state['uploaded_photo'] = uploaded_photo
 
 if uploaded_photo:
 
@@ -58,11 +67,11 @@ if uploaded_photo:
     chart = plot_emotion_probabilities(emotion_probs)
     col2.altair_chart(chart, use_container_width=True)
 
-    if not st.session_state['prediction_to_db_given']:
+    if not st.session_state['prediction_to_db']:
         try:
             # Save prediction to the database
             save_prediction_to_db(dominant_emotion)
-            st.session_state['prediction_to_db_given'] = True
+            st.session_state['prediction_to_db'] = True
         except:
             pass
 
@@ -81,5 +90,4 @@ if uploaded_photo:
             if feedback:
                 st.success("✔️ Thank you for your feedback!")
                 st.session_state['feedback_given'] = True
-
 
