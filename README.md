@@ -64,40 +64,38 @@ After the predictions are shown, a feedback section will also appear as shown be
 
 ![Screenshot 2024-07-01 at 10 56 28 PM](https://github.com/oozdal/Face-Emotion-Detection/assets/34719109/bc7bb23f-0383-40ee-8933-a72682332aa3)
 
-## Development
+## PostgreSQL Database
 
-If you want to develop this application further, follow these steps:
+We store the dominant emotion, timestamp, prediction probabilities and your feedback in the PostgreSQL database as shown below.
 
-**1. Clone the Repository**
+<img width="1411" alt="Screenshot 2024-07-13 at 7 09 07 PM" src="https://github.com/user-attachments/assets/b0e0c6f5-79c9-403c-9646-99796ae09949">
 
-```bash
-git clone https://github.com/oozdal/Face-Emotion-Detection.git
-cd Face-Emotion-Detection
-```
+## Using Your Own PostgreSQL Database
 
-**2. Set Up a Virtual Environment***
+If you would like to configure your own PostgreSQL database, follow these steps:
 
-```bash
-python -m venv venv
-source venv/bin/activate  # On Windows use `venv\Scripts\activate`
-```
+1. **Create Your PostgreSQL Database**
+   - Set up a PostgreSQL database.
+   - Create a table with the following columns:
+     - `dominant_emotion` (type: STRING)
+     - `timestamp` (type: STRING)
+     - `prediction_probabilities` (type: JSON)
 
-**3. Install Dependencies**
+2. **Configure Your Environment**
+   - Create a `.env` file.
+   - Add the following line to the `.env` file:
+     ```ini
+     CONNECTION_URL=your_postgres_url_address
+     ```
+   - Replace `your_postgres_url_address` with the actual URL of your PostgreSQL database.
 
-```bash
-pip install -r requirements.txt
-```
+3. **Copy .env File into Docker Container**
+   - Use the Docker copy command to copy the `.env` file into your Docker container:
+     ```bash
+     docker cp path/to/your/.env your_container_name:/path/inside/container/.env
+     ```
 
-**4. Run the Application Locally**
+4. **Run Your Application**
+   - Start your Docker container if it isn't already running.
+   - Your application should now be configured to use your PostgreSQL database.
 
-```bash
-streamlit run emotion_detection_app.py --server.port 8501
-```
-
-**5. Access the Application**
-
-Open your web browser and go to http://localhost:8501 to access the Streamlit application.
-
-**6. Make Changes**
-
-You can now make changes to the application. The main script is emotion_detection_app.py, and you can modify the model, UI, or other components as needed.
