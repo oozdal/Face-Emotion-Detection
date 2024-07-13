@@ -17,10 +17,15 @@ def get_db_connection():
 def save_prediction_to_db(dominant_emotion):
     conn = get_db_connection()
     cur = conn.cursor()
+
+    # Get the current timestamp
+    timestamp = datetime.now().strftime("%Y-%m-%d-%H:%M:%S")
+
     cur.execute("""
-        INSERT INTO predictions (dominant_emotion)
-        VALUES (%s)
-    """, (dominant_emotion,))
+        INSERT INTO predictions (dominant_emotion, timestamp)
+        VALUES (%s, %s)
+    """, (dominant_emotion, timestamp))
+    
     conn.commit()
     cur.close()
     conn.close()
