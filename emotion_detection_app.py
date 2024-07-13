@@ -70,7 +70,7 @@ if uploaded_photo:
     if not st.session_state['prediction_to_db']:
         try:
             # Save prediction to the database
-            save_prediction_to_db(dominant_emotion)
+            save_prediction_to_db(dominant_emotion, emotion_probs)
             st.session_state['prediction_to_db'] = True
         except:
             pass
