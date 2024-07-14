@@ -89,5 +89,5 @@ if uploaded_photo:
         
             if feedback:
                 st.success("✔️ Thank you for your feedback!")
+                save_prediction_to_db(dominant_emotion, emotion_probs, feedback)
                 st.session_state['feedback_given'] = True
-
