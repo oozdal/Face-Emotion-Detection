@@ -70,6 +70,8 @@ We store the dominant emotion, timestamp, prediction probabilities and your feed
 
 <img width="1411" alt="Screenshot 2024-07-13 at 7 09 07 PM" src="https://github.com/user-attachments/assets/b0e0c6f5-79c9-403c-9646-99796ae09949">
 
+<img width="649" alt="Screenshot 2024-07-14 at 2 31 39 PM" src="https://github.com/user-attachments/assets/bb5e741b-93d7-4599-baf9-087c622c054d">
+
 ## Using Your Own PostgreSQL Database
 
 If you would like to configure your own PostgreSQL database, follow these steps:
@@ -80,6 +82,7 @@ If you would like to configure your own PostgreSQL database, follow these steps:
      - `dominant_emotion` (type: STRING)
      - `timestamp` (type: STRING)
      - `prediction_probabilities` (type: JSON)
+     - `feedback` (type: JSON)
 
 2. **Configure Your Environment**
    - Create a `.env` file.
